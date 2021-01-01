@@ -1,0 +1,63 @@
+//Trinh Nhat Huy MSV: 18810310496
+#include<iostream>
+using namespace std;
+struct sach{
+	char masach[30];
+	char tensach[50];
+	int nxb;
+	int gia;
+};
+void nhap(sach a[], int n){
+	for(int i=0;i<n;i++){
+		cout<<"Nhap phan tu "<<i+1<<":"<<endl;
+		cout<<"Nhap ma sach: ";
+		fflush(stdin);
+		gets(a[i].masach);
+		cout<<"Nhap ten sach: ";
+		fflush(stdin);
+		gets(a[i].tensach);
+		cout<<"Nhap nxb: ";
+		cin>>a[i].nxb;
+		cout<<"Nhap gia tien: ";
+		cin>>a[i].gia;
+	}
+}
+void xuat(sach a[], int n){
+	for(int i=0;i<n;i++){
+		cout<<"Thong tin sach thu "<<i+1<<":"<<endl;
+		cout<<"Ma sach: "<<a[i].masach<<endl;
+		cout<<"Ten sach: "<<a[i].tensach<<endl;
+		cout<<"Nxb: "<<a[i].nxb<<endl;
+		cout<<"Gia tien: "<<a[i].gia<<endl;
+	}
+}
+void sapxep(sach a[], int n)
+{
+	int i,j;
+	sach t;
+	for(int i=1;i<=n-1;i++)
+	{
+		j = i;
+		while(j>0 and a[j-1].gia > a[j].gia)
+		{
+			t = a[j-1];
+			a[j-1] = a[j];
+			a[j] = t;
+			j--;
+		}
+	}
+}
+int main(){
+	sach a[100];
+	int n;
+	cout<<"Nhap so luong sach: ";
+	cin>>n;
+	nhap(a, n);
+	cout<<"**********************************************"<<endl;
+	cout<<"Thong tin sach da nhap: "<<endl;
+	xuat(a, n);
+	cout<<"**********************************************"<<endl;
+	cout<<"Sap xep theo thu tu Insertion Sort: "<<endl;
+	sapxep(a, n);
+	xuat(a, n);
+}
